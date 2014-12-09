@@ -15,7 +15,7 @@ void setup()  {
 }
 
 void draw()  {
-  background(255,0,0);
+
   for(Player player:players)  {
     player.update();
     player.display();
