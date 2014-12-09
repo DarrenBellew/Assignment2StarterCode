@@ -9,67 +9,62 @@
 ArrayList<Player> players = new ArrayList<Player>();
 boolean[] keys = new boolean[526];
 
-void setup()
-{
+void setup()  {
   size(500, 500);
   setUpPlayerControllers();
 }
 
-void draw()
-{
-  for(Player player:players)
-  {
+void draw()  {
+  background(255,0,0);
+  for(Player player:players)  {
     player.update();
     player.display();
   }
 }
 
-void keyPressed()
-{
+void keyPressed()  {
   keys[keyCode] = true;
 }
 
-void keyReleased()
-{
+void keyReleased()  {
   keys[keyCode] = false;
 }
 
-boolean checkKey(char theKey)
-{
+boolean checkKey(char theKey)  {
   return keys[Character.toUpperCase(theKey)];
 }
 
-char buttonNameToKey(XML xml, String buttonName)
-{
+char buttonNameToKey(XML xml, String buttonName)   {
   String value =  xml.getChild(buttonName).getContent();
-  if ("LEFT".equalsIgnoreCase(value))
-  {
+  
+  if ("LEFT".equalsIgnoreCase(value))  {
     return LEFT;
   }
-  if ("RIGHT".equalsIgnoreCase(value))
-  {
+  
+  if ("RIGHT".equalsIgnoreCase(value))  {
     return RIGHT;
   }
-  if ("UP".equalsIgnoreCase(value))
-  {
+  
+  if ("UP".equalsIgnoreCase(value))  {
     return UP;
   }
-  if ("DOWN".equalsIgnoreCase(value))
-  {
+  
+  if ("DOWN".equalsIgnoreCase(value))  {
     return DOWN;
   }
+  
   //.. Others to follow
   return value.charAt(0);  
 }
 
-void setUpPlayerControllers()
-{
+void setUpPlayerControllers()  {
+  
   XML xml = loadXML("arcade.xml");
   XML[] children = xml.getChildren("player");
   int gap = width / (children.length + 1);
   
-  for(int i = 0 ; i < children.length ; i ++)  
-  {
+  for(int i = 0 ; i < children.length ; i ++)  {
+    
     XML playerXML = children[i];
     Player p = new Player(
             i
